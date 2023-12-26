@@ -219,7 +219,7 @@ namespace CounterStrikeSharp.API.Core
 
                             var flags = attr.Permissions.Except(adminData?.GetAllFlags() ?? new HashSet<string>());
                             flags = flags.Except(adminData?.Groups ?? new HashSet<string>());
-                            command.ReplyToCommand($"[CSS] {responseStr} ({string.Join(", ", flags)}) to execute this command.");
+                            command.ReplyToCommand($"[ Bird ] {responseStr} ({string.Join(", ", flags)}) to execute this command.");
 
                             return;
                         }
@@ -234,10 +234,10 @@ namespace CounterStrikeSharp.API.Core
                     {
                         case CommandUsage.CLIENT_AND_SERVER: break; // Allow command through.
                         case CommandUsage.CLIENT_ONLY:
-                            if (caller == null || !caller.IsValid) { command.ReplyToCommand("[CSS] This command can only be executed by clients."); return; }
+                            if (caller == null || !caller.IsValid) { command.ReplyToCommand("[ Bird ] This command can only be executed by clients."); return; }
                             break;
                         case CommandUsage.SERVER_ONLY:
-                            if (caller != null && caller.IsValid) { command.ReplyToCommand("[CSS] This command can only be executed by the server."); return; }
+                            if (caller != null && caller.IsValid) { command.ReplyToCommand("[ Bird ] This command can only be executed by the server."); return; }
                             break;
                         default: throw new ArgumentException("Unrecognised CommandUsage value passed in CommandHelperAttribute.");
                     }
@@ -251,7 +251,7 @@ namespace CounterStrikeSharp.API.Core
                         var commandCalled = command.ArgByIndex(0);
                         var properCommandName = (commandCalled.StartsWith("css_")) ? commandCalled.Replace("css_", "") : commandCalled;
 
-                        command.ReplyToCommand($"[CSS] Expected usage: \"!{properCommandName} {helperAttribute.Usage}\".");
+                        command.ReplyToCommand($"[ Bird ] Expected usage: \"!{properCommandName} {helperAttribute.Usage}\".");
                         return;
                     }
                 }
